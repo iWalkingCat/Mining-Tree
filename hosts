@@ -1,0 +1,9 @@
+[workers]
+5900x	ansible_host=192.168.1.103
+7900x	ansible_host=192.168.1.38
+
+
+[clore]
+clore1	ansible_host=	ansible_ssh_port=
+clore2	ansible_host=	ansible_ssh_port=
+clore3  ansible_host=	ansible_ssh_port=
