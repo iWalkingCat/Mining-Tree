@@ -1,0 +1,48 @@
+---
+# tasks file for deploy_zeph
+
+- name: Copy wallet to remote server
+  copy: src=~/wallets/{{ coin }} dest=/root/{{ coin }}
+- name: Extracting a wallet from a file
+  shell: cat /root/{{ coin }}
+  register: wallet
+- name: Print wallet
+  debug:
+    var: wallet.stdout
+
+- name: Download and unarchive XMRig
+  unarchive:
+    src: https://github.com/xmrig/xmrig/releases/download/v6.21.3/xmrig-6.21.3-linux-static-x64.tar.gz
+    dest: /root
+    remote_src: yes
+- name: Configure start.sh
+  shell: |
+    cat <<EOF> /root/xmrig-6.21.3/config.json
+    #!/bin/bash
+    {
+        "autosave": true,
+        "cpu": true,
+        "opencl": false,
+        "cuda": false,
+        "pools": [
+            {
+                "coin": null,
+                "algo": null,
+                "url": "de-zephyr.miningocean.org:5432",
+                "user": "{{ wallet.stdout }}",
+                "pass": "x",
+                "tls": true,
+                "keepalive": false,
+                "nicehash": false
+            }
+        ]
+    }
+    EOF
+ 
+    echo "./xmrig -o de-zephyr.miningocean.org:5432 -u {{ wallet.stdout }} --tls --rig-id={{ ansible_hostname }}" > /root/xmrig-6.21.3/start.sh
+    chmod u+x /root/xmrig-6.21.3/start.sh
+
+- name: Start mining via Tmux
+  shell: |
+    tmux split-window -h -t work
+    tmux send-keys -t work:0.1 'cd /root/xmrig-6.21.3 && ./start.sh' Enter

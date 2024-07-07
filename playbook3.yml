@@ -13,3 +13,4 @@
 
   roles:
     - deploy_gram
+    - deploy_zeph
