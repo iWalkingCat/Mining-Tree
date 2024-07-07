@@ -5,5 +5,3 @@
 
 [clore]
 clore1	ansible_host=	ansible_ssh_port=
-clore2	ansible_host=	ansible_ssh_port=
-clore3  ansible_host=	ansible_ssh_port=
