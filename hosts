@@ -4,4 +4,4 @@
 
 
 [clore]
-clore1	ansible_host=n6.c1.clorecloud.net	ansible_ssh_port=10256
+clore1	ansible_host=n6.c1.clorecloud.net	ansible_ssh_port=10345
