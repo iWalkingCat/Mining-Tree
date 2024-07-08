@@ -12,6 +12,6 @@ echo "randomwalletaddress29858239072352" > ~/wallets/alph
 **Внимание! Название монеты нужно брать из таблицы поддерживаемых монет!**
 Поддерживается               | В разработке  | В планах     
 -----------------------------|---------------|------------
-gram                         | SpectreX      | 
-spectre                      | Future        |          
-zeph                         | Future        |         
+gram                         | Soon...       | Soon... 
+spectre                      | Soon...       | Soon...       
+zeph                         | Soon...       | Soon...         
