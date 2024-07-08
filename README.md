@@ -1,7 +1,7 @@
 # Mining-Tree
 A small tree eventually grows into a large tree, its branches growing thick foliage...
 
-Создайте в каталоге ~/ на вашем локальном компьютере папку wallets, перейтите в папку и создайте документ, содержащий адрес кошелька нужной монеты. Пример с монетой Alephium:
+Для хранения кошельков нужно создать каталог <code>wallets<code> в домашнем каталоге вашего локального компьютера <code>~/<code>, далее создать внутри каталога <code>wallets<code> документ с именем монеты, например <code>alph<code> или <code>zeph<code> и поместить в этот документ адрес кошелька:
 ```
 cd ~/
 mkdir wallets
