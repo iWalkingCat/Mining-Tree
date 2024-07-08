@@ -13,5 +13,5 @@ echo "randomwalletaddress29858239072352" > ~/wallets/alph
 Поддерживается               | В разработке  | В планах     
 -----------------------------|---------------|------------
 gram                         | SpectreX      | 
-Spectre                      | Future        |          
+spectre                      | Future        |          
 zeph                         | Future        |         
