@@ -1,0 +1,4 @@
+---
+# vars file for deploy_gram_zil_OC
+coin:	"gram"
+coin2:	"zil"

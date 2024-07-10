@@ -1,7 +1,7 @@
 [workers]
-5900x	ansible_host=192.168.1.103
-7900x	ansible_host=192.168.1.38
+5900x	ansible_host=192.168.1.103	ansible_user=worker5900x
+
 
 
 [clore]
-clore1	ansible_host=n6.c1.clorecloud.net	ansible_ssh_port=10345
+clore1	ansible_host=n3.c1.clorecloud.net	ansible_ssh_port=10354

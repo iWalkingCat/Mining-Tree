@@ -1,0 +1,44 @@
+---
+# tasks file for deploy_gram
+- name: Copy wallet to remote server
+  copy: src=~/wallets/{{ coin }} dest=/root/{{ coin }}
+- name: Extracting a wallet from a file
+  shell: cat /root/{{ coin }}
+  register: wallet
+- name: Print wallet
+  debug:
+    var: wallet.stdout
+
+- name: Copy wallet to remote server
+  copy: src=~/wallets/{{ coin2 }} dest=/root/{{ coin2 }}
+- name: Extracting a wallet from a file
+  shell: cat /root/{{ coin2 }}
+  register: wallet2
+- name: Print wallet
+  debug:
+    var: wallet2.stdout
+
+
+- name: Download and unarchive RigelMiner
+  unarchive:
+    src: https://github.com/rigelminer/rigel/releases/download/1.17.4/rigel-1.17.4-linux.tar.gz
+    dest: /root
+    remote_src: yes
+- name: Configure start.sh
+  shell: |
+    cat <<EOF> /root/rigel-1.17.4-linux/start.sh
+    #!/bin/bash
+    ./rigel -a sha256ton+zil \
+        -o [1]stratum+tcp://fi.ton.hashrate.to:4002 -u [1]{{ wallet.stdout }} \
+        -o [2]stratum+ssl://eu.zil.k1pool.com:1111 -u [2]{{ wallet2.stdout }} \
+        -w {{ ansible_hostname }} --zil-countdown \
+        --lock-cclock [1]2300 --lock-mclock [1]810 --cclock [1]300 --pl [1]320 \
+        --lock-cclock [2]2500 --lock-mclock [2]X --mclock [2]1000 --cclock [2]100 --pl [2]300 --fan-control 75
+    EOF
+    chmod u+x /root/rigel-1.17.4-linux/start.sh
+
+- name: Start mining via Tmux
+  shell: |
+    tmux new -s work -d
+    tmux send-keys -t work 'cd /root/rigel-1.17.4-linux/ && ./start.sh' Enter
+
