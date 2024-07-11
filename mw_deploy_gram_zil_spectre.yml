@@ -1,0 +1,17 @@
+---
+- name: Install required packages
+  hosts: my_workers
+  become: yes
+
+  pre_tasks:
+    - name: Apt update
+      apt: update_cache=true
+    - name: Install Tmux
+      apt: name=tmux state=latest
+    - name: Install Zip
+      apt: name=zip state=latest
+
+  roles:
+    - run_spectre
+    - run_gram_zil_oc
+
