@@ -1,6 +1,6 @@
 ---
 - name: Install required packages
-  hosts: workers
+  hosts: my_workers
   become: yes
 
   pre_tasks:
@@ -12,6 +12,6 @@
       apt: name=zip state=latest
 
   roles:
-    - deploy_spectre
-    - deploy_gram_zil_OC
+    - run_spectre
+    - run_gram_zil_oc
 

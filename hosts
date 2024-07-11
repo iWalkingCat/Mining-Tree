@@ -1,6 +1,6 @@
-[workers]
+[my_workers]
 5900x	ansible_host=192.168.1.103	ansible_user=worker5900x
-
+7900x	ansible_host=192.168.1.38	ansible_user=worker7900x
 
 
 [clore]
