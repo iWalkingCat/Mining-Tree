@@ -1,0 +1,44 @@
+---
+# tasks file for run_spectre_NEW
+
+- name: Copy wallet to remote server
+  copy: src=~/wallets/{{ coin }} dest=/root/{{ coin }}
+- name: Extracting a wallet from a file
+  shell: cat /root/{{ coin }}
+  register: wallet
+- name: Print wallet
+  debug:
+    var: wallet.stdout
+
+- name: Stop service
+  shell: |
+    systemctl stop mining_amd
+    systemctl disable mining_amd
+    systemctl daemon-reload
+
+
+- name: Create service
+  shell: |
+    cat <<EOF> /etc/systemd/system/mining_amd.service
+    [Unit]
+    Description=Mining AMD
+    After=network.target
+
+    [Service]
+    User=root
+    Group=root
+    Type=simple
+    Restart=on-failure
+    ExecStart=/root/miners/spectreminer/bin/spectre-miner-v0.3.16-linux-gnu-amd64 \
+      -a {{ wallet.stdout }} -t $(cat /proc/cpuinfo | grep processor | wc -l) --spectred-address 195.135.215.24
+
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+
+- name: Enable service
+  shell: |
+    systemctl daemon-reload
+    systemctl start mining_amd 
+    systemctl enable mining_amd
+    systemctl status mining_amd --no-pager

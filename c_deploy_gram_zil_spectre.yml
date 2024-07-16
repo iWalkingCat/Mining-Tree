@@ -1,6 +1,6 @@
 ---
 - name: Install required packages
-  hosts: my_workers
+  hosts: clore
   become: yes
 
   pre_tasks:
@@ -12,6 +12,6 @@
       apt: name=zip state=latest
 
   roles:
-    - run_spectre_NEW
-    - run_gram_zil_NEW
+    - run_spectre
+    - run_gram_zil_oc
 

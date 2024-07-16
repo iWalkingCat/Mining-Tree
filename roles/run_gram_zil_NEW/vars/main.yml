@@ -1,0 +1,5 @@
+---
+# vars file for run_gram_zil_NEW
+coin:   "gram"
+coin2:  "zil"
+
