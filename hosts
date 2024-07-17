@@ -4,7 +4,9 @@
 
 
 [clore]
-clore1	ansible_host=n6.c1.clorecloud.net	ansible_ssh_port=10644
-clore3	ansible_host=n6.c1.clorecloud.net       ansible_ssh_port=10703
-clore4	ansible_host=n4.c1.clorecloud.net       ansible_ssh_port=10074
-clore5	ansible_host=n5.c1.clorecloud.net	ansible_ssh_port=10142
+clore2	ansible_host=n4.c1.clorecloud.net       ansible_ssh_port=10208
+clore4	ansible_host=n5.c1.clorecloud.net	ansible_ssh_port=10582
+clore5	ansible_host=n5.c1.clorecloud.net	ansible_ssh_port=10535
+clore6  ansible_host=n5.c1.clorecloud.net	ansible_ssh_port=10033
+clore7  ansible_host=n4.c1.clorecloud.net	ansible_ssh_port=10187
+

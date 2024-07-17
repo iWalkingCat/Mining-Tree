@@ -12,6 +12,6 @@
       apt: name=zip state=latest
 
   roles:
-    - run_spectre_NEW
-    - run_gram_zil_NEW
+    - run_mw_spectre
+    - run_mw_gram_zil
 

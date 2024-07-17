@@ -39,7 +39,7 @@
     Group=root
     Type=simple
     Restart=on-failure
-    ExecStart=/root/rigelminer/rigel-1.17.4-linux/rigel -a sha256ton+zil \
+    ExecStart=/root/miners/rigelminer/rigel-1.17.4-linux/rigel -a sha256ton+zil \
         -o [1]stratum+tcp://fi.ton.hashrate.to:4002 -u [1]{{ wallet.stdout }} \
         -o [2]stratum+ssl://eu.zil.k1pool.com:1111 -u [2]{{ wallet2.stdout }} \
         -w {{ ansible_hostname }} --zil-countdown \
@@ -56,4 +56,3 @@
     systemctl start mining_nvidia
     systemctl enable mining_nvidia
     systemctl status mining_nvidia --no-pager
-
